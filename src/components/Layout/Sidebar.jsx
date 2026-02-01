@@ -58,6 +58,14 @@ const Sidebar = ({ userRole, onLogout }) => {
                     <Utensils size={20} />
                     <span>Menu Processing</span>
                 </NavLink>
+
+                {/* Warden Only Link */}
+                {userRole === 'warden' && (
+                    <NavLink to="/students" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
+                        <Users size={20} />
+                        <span>Student List</span>
+                    </NavLink>
+                )}
             </nav>
 
             <div className="user-profile">

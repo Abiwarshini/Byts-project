@@ -9,8 +9,10 @@ import {
   Volunteers,
   Feedback,
   Complaint,
-  MenuProcessing
+  MenuProcessing,
+  StudentList
 } from './modules';
+import Signup from './modules/Auth/Signup';
 import './App.css';
 
 // Protected Route Component
@@ -56,6 +58,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         {/* Public Route */}
+        <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={
           isAuthenticated ? <Navigate to="/mess-committee" replace /> : <Login onLogin={handleLogin} />
         } />
@@ -73,6 +76,7 @@ function App() {
                 <Route path="/feedback" element={<Feedback />} />
                 <Route path="/complaint" element={<Complaint />} />
                 <Route path="/menu-processing" element={<MenuProcessing />} />
+                <Route path="/students" element={<StudentList />} />
               </Routes>
             </Layout>
           </ProtectedRoute>

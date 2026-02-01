@@ -177,3 +177,72 @@
 .login-banner {
     display: none;
 }
+
+/* Signup Specific Overrides to handle more content */
+.signup-container {
+    width: 500px;
+    /* Slightly wider for signup */
+    max-height: 90vh;
+    /* Don't exceed screen height */
+    padding-bottom: 20px;
+}
+
+.signup-scroll {
+    overflow-y: auto;
+    padding-right: 5px;
+    /* Space for scrollbar */
+    max-height: 60vh;
+}
+
+/* Scrollbar for form */
+.signup-scroll::-webkit-scrollbar {
+    width: 6px;
+}
+
+.signup-scroll::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.signup-scroll::-webkit-scrollbar-thumb {
+    background: #E2E8F0;
+    border-radius: 3px;
+}
+
+.form-row {
+    display: flex;
+    gap: 16px;
+}
+
+.form-group.half {
+    flex: 1;
+}
+
+.form-select {
+    padding: 14px 16px;
+    border: 2px solid #E2E8F0;
+    border-radius: 12px;
+    font-size: 14px;
+    color: #2D3748;
+    background: #F8FAFC;
+    outline: none;
+    width: 100%;
+    box-sizing: border-box;
+    /* Ensure padding doesn't affect width */
+}
+
+.auth-footer {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 14px;
+    color: #718096;
+}
+
+.auth-footer a {
+    color: #536473;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.auth-footer a:hover {
+    text-decoration: underline;
+}

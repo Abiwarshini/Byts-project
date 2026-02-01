@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import './style.css';
 
 const Login = ({ onLogin }) => {
@@ -85,6 +85,10 @@ const Login = ({ onLogin }) => {
                     <button type="submit" className="login-btn">
                         Sign In as {role.charAt(0).toUpperCase() + role.slice(1)}
                     </button>
+
+                    <div className="auth-footer">
+                        Don't have an account? <Link to="/signup">Sign Up</Link>
+                    </div>
                 </form>
             </div>
 
