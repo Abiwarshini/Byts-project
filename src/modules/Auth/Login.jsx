@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import './style.css';
+import { api } from '../../utils/api';
 
 const Login = ({ onLogin }) => {
     const [email, setEmail] = useState('');
@@ -8,12 +9,18 @@ const Login = ({ onLogin }) => {
     const [role, setRole] = useState('student'); // Default role
     const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Simulate login
-        if (email && password) {
-            onLogin(role);
+
+        try {
+            const userData = await api.post('/auth/login', { email, password, role });
+
+            // Store current user session
+            localStorage.setItem('currentUser', JSON.stringify(userData));
+            onLogin(userData);
             navigate('/mess-committee');
+        } catch (error) {
+            alert(error.message);
         }
     };
 

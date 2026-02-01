@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import './style.css';
+import { api } from '../../utils/api';
 
 const Signup = () => {
     const [role, setRole] = useState('student');
@@ -31,11 +31,30 @@ const Signup = () => {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('Signup Data:', { role, ...formData });
-        // In a real app, API call here
-        navigate('/login');
+
+        if (formData.password !== formData.confirmPassword) {
+            alert("Passwords do not match");
+            return;
+        }
+
+        // Prepare User Object for API
+        const userData = {
+            ...formData,
+            role,
+            hostel: formData.hostelName,
+            room: formData.roomNo,
+            year: role === 'student' ? '1' : '' // Default
+        };
+
+        try {
+            await api.post('/auth/register', userData);
+            alert("Account created successfully! Please login.");
+            navigate('/login');
+        } catch (error) {
+            alert(error.message);
+        }
     };
 
     return (

@@ -27,31 +27,37 @@ function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userRole, setUserRole] = useState('student'); // 'student', 'caretaker', 'warden'
 
+  const [currentUser, setCurrentUser] = useState(null);
+
   // Check for existing session
   useEffect(() => {
     const storedAuth = localStorage.getItem('isAuthenticated');
-    const storedRole = localStorage.getItem('userRole');
+    const storedUser = localStorage.getItem('currentUser');
 
-    if (storedAuth === 'true') {
+    if (storedAuth === 'true' && storedUser) {
       setIsAuthenticated(true);
-      if (storedRole) {
-        setUserRole(storedRole);
-      }
+      const parsedUser = JSON.parse(storedUser);
+      setUserRole(parsedUser.role);
+      setCurrentUser(parsedUser);
     }
   }, []);
 
-  const handleLogin = (role) => {
+  const handleLogin = (user) => {
     setIsAuthenticated(true);
-    setUserRole(role);
+    setUserRole(user.role);
+    setCurrentUser(user);
     localStorage.setItem('isAuthenticated', 'true');
-    localStorage.setItem('userRole', role);
+    localStorage.setItem('userRole', user.role);
+    // currentUser is already set in Login.jsx to localStorage, but syncing state here
   };
 
   const handleLogout = () => {
     setIsAuthenticated(false);
     setUserRole('student');
+    setCurrentUser(null);
     localStorage.removeItem('isAuthenticated');
     localStorage.removeItem('userRole');
+    localStorage.removeItem('currentUser');
   };
 
   return (
