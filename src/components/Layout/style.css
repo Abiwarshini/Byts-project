@@ -1,0 +1,257 @@
+:root {
+    --bg-dark: #536473;
+    /* Slate Blue-Grey from image */
+    --bg-card: #FFFFFF;
+    --primary-color: #2B3674;
+    --secondary-color: #4318FF;
+    --accent-teal: #4FD1C5;
+    --accent-orange: #F6AD55;
+    --text-light: #FFFFFF;
+    --text-muted: #CBD5E0;
+    --text-dark: #2D3748;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'DM Sans', 'Inter', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-dark);
+}
+
+.app-layout {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    background-color: var(--bg-dark);
+}
+
+/* Sidebar Styles - Now on Dark Background */
+.sidebar {
+    width: 260px;
+    background-color: transparent;
+    /* Blends with body */
+    display: flex;
+    flex-direction: column;
+    padding: 30px 20px;
+    border-right: none;
+    color: var(--text-light);
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 50px;
+    padding-left: 10px;
+}
+
+.logo-icon {
+    width: 40px;
+    height: 40px;
+    background: white;
+    /* Inverted for contrast */
+    color: var(--bg-dark);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 20px;
+}
+
+.logo-text {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text-light);
+    margin: 0;
+}
+
+.nav-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    flex: 1;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 16px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: var(--text-muted);
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.nav-item:hover {
+    color: var(--text-light);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.nav-item.active {
+    background-color: white;
+    color: var(--bg-dark);
+    /* Dark text on white active item */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font-weight: 700;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: auto;
+}
+
+.avatar {
+    width: 44px;
+    height: 44px;
+    background-color: var(--text-light);
+    color: var(--bg-dark);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.user-info .user-name {
+    margin: 0;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--text-light);
+}
+
+.user-info .user-role {
+    margin: 0;
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.logout-btn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 20px;
+    cursor: pointer;
+    margin-left: auto;
+    transition: color 0.2s;
+}
+
+.logout-btn:hover {
+    color: #FF6B6B;
+}
+
+/* Main Content Styles - The "White Card" Look */
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 20px 20px 0;
+    /* Right padding, no left padding to merge with sidebar space */
+    box-sizing: border-box;
+    overflow: hidden;
+    /* important for inner card scroll */
+}
+
+/* The actual white card container */
+.content-area {
+    background-color: #F4F7FE;
+    /* Very light grey/white for inner dash */
+    border-radius: 30px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    /* Scroll inside the card */
+    padding: 0;
+    position: relative;
+    box-shadow: -5px 0 20px rgba(0, 0, 0, 0.05);
+}
+
+/* Header now on the dark background */
+.top-header {
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: transparent;
+    flex-shrink: 0;
+}
+
+.page-title {
+    margin: 0;
+    color: var(--text-light);
+    /* White text */
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+    opacity: 0.9;
+}
+
+.header-actions {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.icon-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+.icon-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Inner Module Container */
+/* These sit INSIDE the .content-area */
+.module-container,
+.mess-committee-meeting-container,
+.token-allocation-container,
+.poll-container,
+.volunteers-container,
+.feedback-container,
+.complaint-container,
+.menu-processing-container {
+    padding: 0 40px 40px 40px;
+}
+
+h2 {
+    color: var(--text-dark);
+    font-size: 32px;
+    margin-bottom: 30px;
+    border-bottom: none;
+    font-weight: 700;
+}
+
+/* Scrollbar styling */
+.content-area::-webkit-scrollbar {
+    width: 8px;
+}
+
+.content-area::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.content-area::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+}
