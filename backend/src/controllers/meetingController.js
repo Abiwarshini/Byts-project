@@ -67,6 +67,40 @@ const deleteMeeting = async (req, res) => {
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
-}
+};
 
-module.exports = { getMeetings, createMeeting, updateMeeting, deleteMeeting };
+const submitRsvp = async (req, res) => {
+    try {
+        const { studentId, studentName, attending } = req.body;
+        const meeting = await Meeting.findById(req.params.id);
+
+        if (!meeting) {
+            return res.status(404).json({ message: 'Meeting not found' });
+        }
+
+        // Check if student already responded
+        const existingRsvp = meeting.rsvps.find(r => r.studentId === studentId);
+        
+        if (existingRsvp) {
+            // Update existing response
+            existingRsvp.attending = attending;
+            existingRsvp.respondedAt = new Date();
+        } else {
+            // Add new response
+            meeting.rsvps.push({
+                studentId: studentId || 'unknown',
+                studentName: studentName || 'Anonymous',
+                attending,
+                respondedAt: new Date()
+            });
+        }
+
+        const updatedMeeting = await meeting.save();
+        res.json(updatedMeeting);
+    } catch (error) {
+        console.error('RSVP Error:', error);
+        res.status(500).json({ message: error.message });
+    }
+};
+
+module.exports = { getMeetings, createMeeting, updateMeeting, deleteMeeting, submitRsvp };

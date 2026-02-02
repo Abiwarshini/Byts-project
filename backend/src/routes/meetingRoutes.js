@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { getMeetings, createMeeting, updateMeeting, deleteMeeting } = require('../controllers/meetingController');
+const { getMeetings, createMeeting, updateMeeting, deleteMeeting, submitRsvp } = require('../controllers/meetingController');
 const { protect } = require('../middleware/authMiddleware');
 
 router.route('/')
@@ -10,5 +10,8 @@ router.route('/')
 router.route('/:id')
     .put(protect, updateMeeting)
     .delete(protect, deleteMeeting);
+
+router.route('/:id/rsvp')
+    .post(protect, submitRsvp);
 
 module.exports = router;
